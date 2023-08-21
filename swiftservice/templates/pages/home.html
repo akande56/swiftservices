@@ -1,0 +1,861 @@
+{% extends "index.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block header %}
+<li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+<li><a class="nav-link scrollto" href="#about">About</a></li>
+<li><a class="nav-link scrollto" href="#menu">Coverage</a></li>
+<li><a class="nav-link scrollto" href="#specials">More</a></li>
+<li><a class="nav-link scrollto" href="#events">Partner service</a></li>
+<li><a class="nav-link scrollto" href="#chefs">Join</a></li>
+<li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+
+<li class="dropdown"><a href="#"><span>Signup</span> <i class="bi bi-chevron-down"></i></a>
+  <ul>
+
+    <!-- <li class="dropdown"><a href="#"><span>Deep Drop Downc</span> <i class="bi bi-chevron-right"></i></a>
+                <ul>
+                  <li><a href="#">Deep Drop Down 1</a></li>
+                  <li><a href="#">Deep Drop Down 2</a></li>
+                  <li><a href="#">Deep Drop Down 3</a></li>
+                  <li><a href="#">Deep Drop Down 4</a></li>
+                  <li><a href="#">Deep Drop Down 5</a></li>
+                </ul>Drop Down 3
+              </li> -->
+    <li><a href="{% url 'users:customer_signup' %}">Customer Signup</a></li>
+    <li><a href="{% url 'users:support_staff_signup' %}">Support Staff Signup</a></li>
+    <li><a href="{% url 'users:service_provider_signup' %}">Service Provider Signup</a></li>
+
+
+  </ul>
+</li>
+<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+<a href="#book-a-table" class="book-a-table-btn scrollto">Task</a>
+{% if request.user.is_authenticated %}
+<li><a href="{% url 'account_logout' %}">Logout</a></li>
+{% else %}
+<li><a href="{% url 'account_login' %}">Login</a></li>
+{% endif %}
+
+{% endblock header %}
+
+{% block content %}
+<section id="hero">
+  <div class="hero-container">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url({% static 'img/slide/slide-1.jpg' %});">
+          <div class="carousel-container">
+            <div class="carousel-content">
+              <h2 class="animate__animated animate__fadeInDown"><span>Errand</span> Service</h2>
+              <p class="animate__animated animate__fadeInUp">Delegate your daily tasks to us, from grocery shopping to
+                package collection, and we'll handle them efficiently and promptly.</p>
+              <div>
+                <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Location(Coverage)</a>
+                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Request an
+                  errand</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item" style="background-image: url({% static 'img/slide/slide-2.jpg' %});">
+          <div class="carousel-container">
+            <div class="carousel-content">
+              <h2 class="animate__animated animate__fadeInDown">Delivery service</h2>
+              <p class="animate__animated animate__fadeInUp">Swift Services specializes in pickup and delivery services,
+                offering efficient and timely transportation of packages, documents, and goods to various locations.</p>
+              <div>
+                <!-- <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a> -->
+                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Deliver a
+                  package</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item" style="background-image: url({% static 'img/slide/slide-3.jpg' %});">
+          <div class="carousel-container">
+            <div class="carousel-content">
+              <h2 class="animate__animated animate__fadeInDown">Cleaning</h2>
+              <p class="animate__animated animate__fadeInUp">Our professional cleaning team will create a clean and
+                organized environment for residential and commercial spaces through regular cleaning, deep cleaning,
+                move-in/move-out cleaning, and office cleaning.</p>
+              <div>
+
+                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book cleaning</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+      </a>
+
+      <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+      </a>
+
+    </div>
+  </div>
+</section><!-- End Hero -->
+
+<section id="about" class="about">
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/img/about.jpg");'>
+        <a href="#" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+      </div>
+
+      <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
+
+        <div class="content">
+          <h3><strong>Swiftservices</strong></h3>
+          <p>
+            Swift Services is a dynamic and customer-centric platform that provides a wide range of logistics and
+            support services to individuals and businesses. With a commitment to simplifying everyday tasks, Swift
+            Services offers convenience and peace of mind, allowing clients to focus on their core priorities.
+          </p>
+          <!-- <p class="fst-italic">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore
+            magna aliqua.
+          </p> -->
+          <ul>
+            <li><i class="bx bx-check-double"></i>
+            <strong>Logistics Solutions:</strong> Swift Services specializes in pickup and delivery services, offering efficient and
+              timely transportation of packages, documents, and goods to various locations.
+            </li>
+            <li><i class="bx bx-check-double"></i>
+              <strong>Errand Running:</strong> Delegate your daily tasks to us, from grocery shopping to package collection, and we'll handle them efficiently and promptly.
+            </li>
+            <li><i class="bx bx-check-double"></i> 
+              <strong>Cleaning Services:</strong> Our professional cleaning team will create a clean and organized environment for residential and commercial spaces through regular cleaning, deep cleaning, move-in/move-out cleaning, and office cleaning.
+            </li>
+          </ul>
+          
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End About Section -->
+
+<!-- ======= Whu Us Section ======= -->
+<section id="why-us" class="why-us">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Why choose <span>Our Service</span></h2>
+      <!-- <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae
+        autem.</p> -->
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-4">
+        <div class="box">
+          <span>01</span>
+          <h4>Efficiency</h4>
+          <p>
+            We pride ourselves on providing swift and efficient services, utilizing the latest technology and streamlined processes to meet your needs promptly.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="box">
+          <span>02</span>
+          <h4>Reliability</h4>
+          <p>
+            Count on us to deliver on time, every time. We execute tasks with precision and attention to detail.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="box">
+          <span>03</span>
+          <h4> Convenience</h4>
+          <p>
+            Our user-friendly platform and excellent customer support ensure a hassle-free experience, making it easy for you to delegate tasks.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 mt-4 mt-lg-0">
+        <div class="box">
+          <span>04</span>
+          <h4> Sustainability</h4>
+          <p>
+            We are committed to eco-friendly practices, exploring green alternatives and adopting environmentally responsible approaches.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Whu Us Section -->
+
+<!-- ======= Menu Section ======= -->
+<section id="menu" class="menu">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Location<span>Coverage</span></h2>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 d-flex justify-content-center">
+        <ul id="menu-flters">
+          <li data-filter="*" class="filter-active">Show All</li>
+          <li data-filter=".filter-starters">Errand</li>
+          <li data-filter=".filter-salads">Delivery</li>
+          <li data-filter=".filter-specialty">Cleaning</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row menu-container">
+
+      <div class="col-lg-6 menu-item filter-starters">
+        <div class="menu-content">
+          <a href="#">Bauchi</a><span>6am-6pm</span>
+        </div>
+        <div class="menu-ingredients">
+          Bauchi, alkaleri
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-specialty">
+        <div class="menu-content">
+          <a href="#">Abuja</a><span>6am-6pm</span>
+        </div>
+        <div class="menu-ingredients">
+          abuja
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-starters">
+        <div class="menu-content">
+          <a href="#">Niger</a><span>6am-6pm</span>
+        </div>
+        <div class="menu-ingredients">
+          suleja
+        </div>
+      </div>
+
+      <!-- <div class="col-lg-6 menu-item filter-salads">
+        <div class="menu-content">
+          <a href="#">Caesar Selections</a><span>$8.95</span>
+        </div>
+        <div class="menu-ingredients">
+          Lorem, deren, trataro, filede, nerada
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-specialty">
+        <div class="menu-content">
+          <a href="#">Tuscan Grilled</a><span>$9.95</span>
+        </div>
+        <div class="menu-ingredients">
+          Grilled chicken with provolone, artichoke hearts, and roasted red pesto
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-starters">
+        <div class="menu-content">
+          <a href="#">Mozzarella Stick</a><span>$4.95</span>
+        </div>
+        <div class="menu-ingredients">
+          Lorem, deren, trataro, filede, nerada
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-salads">
+        <div class="menu-content">
+          <a href="#">Greek Salad</a><span>$9.95</span>
+        </div>
+        <div class="menu-ingredients">
+          Fresh spinach, crisp romaine, tomatoes, and Greek olives
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-salads">
+        <div class="menu-content">
+          <a href="#">Spinach Salad</a><span>$9.95</span>
+        </div>
+        <div class="menu-ingredients">
+          Fresh spinach with mushrooms, hard boiled egg, and warm bacon vinaigrette
+        </div>
+      </div>
+
+      <div class="col-lg-6 menu-item filter-specialty">
+        <div class="menu-content">
+          <a href="#">Lobster Roll</a><span>$12.95</span>
+        </div>
+        <div class="menu-ingredients">
+          Plump lobster meat, mayo and crisp lettuce on a toasted bulky roll
+        </div>
+      </div> -->
+
+    </div>
+
+  </div>
+</section><!-- End Menu Section -->
+
+<!-- ======= Specials Section ======= -->
+<section id="specials" class="specials">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>More on<span>SwiftServices</span></h2>
+      <!-- <p></p> -->
+    </div>
+
+    <div class="row">
+      <div class="col-lg-3">
+        <ul class="nav nav-tabs flex-column">
+          <li class="nav-item">
+            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Misson</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Vission</a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Pariatur explicabo vel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Nostrum qui quasi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Iusto ut expedita aut</a>
+          </li> -->
+        </ul>
+      </div>
+      <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="tab-content">
+          <div class="tab-pane active show" id="tab-1">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Our mission</h3>
+                
+                <p>
+                  Swift Services is dedicated to becoming the go-to platform for logistics, errand running, and cleaning services. The business strives to simplify the lives of its clients, providing them with more time and freedom to focus on what matters most to them.
+                </p>
+              </div>
+              <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{% static 'img/specials-1.jpg' %}" alt="" class="img-fluid">
+              </div> -->
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-2">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Our Vission</h3>
+                
+                <p>
+                  As Swift Services grows, it envisions expanding its service offerings and geographical reach. The business aims to be synonymous with reliability, speed, and customer satisfaction, making a positive impact on individuals and businesses alike.
+                </p>
+              </div>
+              <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{% static 'img/specials-2.jpg' %}" alt="" class="img-fluid">
+              </div> -->
+            </div>
+          </div>
+          <!-- <div class="tab-pane" id="tab-3">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
+                <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non
+                  sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
+                <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque
+                  necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum
+                  odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="assets/img/specials-3.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab-4">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
+                <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis
+                  delectus</p>
+                <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam
+                  fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed
+                  qui veritatis aperiam quia a laborum inventore</p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="assets/img/specials-4.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div> -->
+          <!-- <div class="tab-pane" id="tab-5">
+            <div class="row">
+              <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
+                <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod
+                  eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae
+                  voluptate vel</p>
+              </div>
+              <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="assets/img/specials-5.jpg" alt="" class="img-fluid">
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section><!-- End Specials Section -->
+
+<!-- ======= Events Section ======= -->
+<section id="events" class="events">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Organize Your <span>Events</span> in our Restaurant</h2>
+    </div>
+
+    <div class="events-slider swiper">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/event-birthday.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Birthday Parties</h3>
+              <div class="price">
+                <p><span>#30,000</span></p>
+              </div>
+              <p class="fst-italic">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua.
+              </p>
+              <ul>
+                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              </ul>
+              <p>
+                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur
+              </p>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/event-private.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Private Parties</h3>
+              <div class="price">
+                <p><span>#60,000</span></p>
+              </div>
+              <p class="fst-italic">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua.
+              </p>
+              <ul>
+                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              </ul>
+              <p>
+                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur
+              </p>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="row event-item">
+            <div class="col-lg-6">
+              <img src="assets/img/event-custom.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-6 pt-4 pt-lg-0 content">
+              <h3>Custom Parties</h3>
+              <div class="price">
+                <p><span>#80,000</span></p>
+              </div>
+              <p class="fst-italic">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore
+                magna aliqua.
+              </p>
+              <ul>
+                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+                <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
+                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+              </ul>
+              <p>
+                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur
+              </p>
+            </div>
+          </div>
+        </div><!-- End testimonial item -->
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section><!-- End Events Section -->
+
+<!-- ======= Book A Table Section ======= -->
+<section id="book-a-table" class="book-a-table">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Request<span>Service</span></h2>
+      <p>Fill the form and select appropriet task for the service you require.</p>
+    </div>
+    <form class="offset-md-4" action="{% url 'home' %}" method="post">
+      {% csrf_token %}
+    
+    <div class="form-group col-md-6">
+      <label for="{{task_form.task_type.id_for_label}}">Task type</label>
+      <select name="{{task_form.task_type.name}}" id="{{task_form.task_type.id_for_label}}" class="form-control">
+        {% for value, label in task_form.task_type.field.choices %}
+      <option value="{{ value }}">{{ label }}</option>
+    {% endfor %}
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      {{ task_form.title|as_crispy_field }}
+  </div>
+
+  <div class="form-group col-md-6">
+    <label for="{{ task_form.description.id_for_label }}">Description</label>
+    <textarea class="form-control" name="{{ task_form.description.name }}" rows="4"></textarea>
+  </div>
+    <div class="form-group col-md-6">
+      <label for="{{ task_form.due_date.id_for_label }}">Due Date</label>
+      <input type="date" class="form-control bg-light" name="{{ task_form.due_date.name }}">
+  </div>
+    <button type="submit" class="btn mt-4" style="background-color: #ffa012;">Create Task</button>
+    </form>
+  </div>
+</section><!-- End Book A Table Section -->
+
+<!-- ======= Gallery Section ======= -->
+<section id="gallery" class="gallery">
+  <div class="container-fluid">
+
+    <div class="section-title">
+      <h2>Some photos from <span>Our Restaurant</span></h2>
+      <p>  </p>
+    </div>
+
+    <div class="row g-0">
+      <!-- <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-1.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-2.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-2.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-3.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-3.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-4.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-4.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-5.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-5.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-6.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-6.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-7.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-7.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4">
+        <div class="gallery-item">
+          <a href="assets/img/gallery/gallery-8.jpg" class="gallery-lightbox">
+            <img src="assets/img/gallery/gallery-8.jpg" alt="" class="img-fluid">
+          </a>
+        </div>
+      </div>
+
+    </div> -->
+
+  </div>
+</section><!-- End Gallery Section -->
+
+<!-- ======= Chefs Section ======= -->
+<section id="chefs" class="chefs">
+  <div class="container">
+
+    <div class="section-title">
+      <h2>Signup<span>As</span></h2>
+      <p style="margin-bottom: 40px;"></p>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-4 col-md-6">
+        <div class="member">
+          <div class="member-info">
+            <h4>Customer</h4>
+            <span>
+                <a href="{% url 'users:customer_signup' %}">Signup</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="member">
+          <div class="member-info">
+            <h4>Support staff</h4>
+            <span><a href="{% url 'users:support_staff_signup' %}">Signup</a></span>
+            <!-- <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="member">
+          <div class="member-info">
+            <h4>Service Provider</h4>
+            <span><a href="{% url 'users:service_provider_signup' %}">Signup</a></span>
+            <!-- <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href=""><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section><!-- End Chefs Section -->
+
+<!-- ======= Testimonials Section ======= -->
+<section id="testimonials" class="testimonials">
+  <div class="container position-relative">
+
+    <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper">
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+            <h3>Sir Isaac</h3>
+            <h4>Ceo &amp; Founder</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              .................
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+            <h3>Solomon jalo</h3>
+            <h4>Techinician &amp; Cofounder </h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              .......
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+            <h3>Abdulsalam Abubakar</h3>
+            <h4>Programmer</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              ...............
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div><!-- End testimonial item -->
+
+        <!-- <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+            <h3>Matt Brandon</h3>
+            <h4>Freelancer</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim
+              dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>End testimonial item -->
+
+        <!-- <div class="swiper-slide">
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+            <h3>John Larson</h3>
+            <h4>Entrepreneur</h4>
+            <div class="stars">
+              <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+            </div>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa
+              labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+        </div>End testimonial item -->
+
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+  </div>
+</section><!-- End Testimonials Section -->
+
+<!-- ======= Contact Section ======= -->
+<section id="contact" class="contact">
+  <div class="container">
+
+    <div class="section-title">
+      <h2><span>Contact</span> Us</h2>
+      <p>Ready to experience the ease and convenience of Swift Services? Contact us today to delegate your tasks and reclaim your time.</p>
+    </div>
+  </div>
+
+  <!-- <div class="map">
+    <iframe style="border:0; width: 100%; height: 350px;"
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+      frameborder="0" allowfullscreen></iframe>
+  </div> -->
+
+  <div class="container mt-5">
+
+    <div class="info-wrap">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 info">
+          <i class="bi bi-geo-alt"></i>
+          <h4>Location:</h4>
+          <p>No... yelwa<br>Bauchi</p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+          <i class="bi bi-clock"></i>
+          <h4>Open Hours:</h4>
+          <p>Saturday-Sunday:<br>6:00 AM - 6:00 PM</p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+          <i class="bi bi-envelope"></i>
+          <h4>Email:</h4>
+          <p>info@example.com<br>contact@example.com</p>
+        </div>
+
+        <div class="col-lg-3 col-md-6 info mt-4 mt-lg-0">
+          <i class="bi bi-phone"></i>
+          <h4>Call:</h4>
+          <p>+234<br>+234</p>
+        </div>
+      </div>
+    </div>
+
+    
+
+  </div>
+</section><!-- End Contact Section -->
+{% endblock content %}

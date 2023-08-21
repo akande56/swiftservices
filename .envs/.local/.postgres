@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=swiftservice
+POSTGRES_USER=qyTytasFsehiKsRmgGjhoUpucmDPvOUm
+POSTGRES_PASSWORD=dKEuRWsoBjQXvVSQVj05dnFEWH0INtQF7q5FrIbUIKKlM4SZPA1HGXHsYBzf68nc
