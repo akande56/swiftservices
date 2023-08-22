@@ -28,10 +28,14 @@ class SocialAccountAdapter(DefaultSocialAccountAdapter):
         See: https://django-allauth.readthedocs.io/en/latest/advanced.html?#creating-and-populating-user-instances
         """
         user = sociallogin.user
-        if name := data.get("name"):
+        name = data.get("name")
+        if name:
             user.name = name
-        elif first_name := data.get("first_name"):
-            user.name = first_name
-            if last_name := data.get("last_name"):
-                user.name += f" {last_name}"
+        else:
+            first_name = data.get("first_name")
+            if first_name:
+                user.name = first_name
+                last_name = data.get("last_name")
+                if last_name:
+                    user.name += f" {last_name}"
         return super().populate_user(request, sociallogin, data)
