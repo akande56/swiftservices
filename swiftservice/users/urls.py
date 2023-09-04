@@ -7,6 +7,7 @@ from swiftservice.users.views import (
     CustomerSignupView,
     SupportStaffSignupView,
     ServiceProviderSignupView,
+    submit_form,
 )
 
 app_name = "users"
@@ -17,4 +18,5 @@ urlpatterns = [
     path('signup/customer/', CustomerSignupView.as_view(), name='customer_signup'),
     path('signup/support_staff/', SupportStaffSignupView.as_view(), name='support_staff_signup'),
     path('signup/service_provider/', ServiceProviderSignupView.as_view(), name='service_provider_signup'),
+    path('submit_form/', submit_form, name='submit_form'),
 ]

@@ -1,3 +1,4 @@
+# import json
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -6,9 +7,11 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
 from django.views.generic.edit import CreateView
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 from allauth.account.views import SignupView
-from .forms import CustomerSignupForm, SupportStaffSignupForm, ServiceProviderSignupForm, TaskForm
-from .models import Customer, ServiceProvider, SupportStaff
+from .forms import CustomerSignupForm, SupportStaffSignupForm, ServiceProviderSignupForm, ServiceForm
+from .models import Customer, ServiceProvider, SupportStaff, Pickup, Delivery, Task
 User = get_user_model()
 
 
@@ -112,36 +115,105 @@ class ServiceProviderSignupView(SignupView):
 
 
 def home(request):
-    if request.method == 'POST':
-        task_form = TaskForm(request.POST)
-        if task_form.is_valid():
-            if not request.user.is_authenticated:
-                # Create a visitor user instance
-                visitor_user, created = User.objects.get_or_create(
-                    email='visitor@gmail.com',
-                    defaults={'password': User.objects.make_random_password()}
-                )
-                if created:
-                    customer = Customer.objects.create(
-                        user=visitor_user,
-                        phone_number='080',  # Set your default value
-                        address='default Visitor Address',  # Set your default value
-                        preferences='cash',  # Set your default value
-                    )
-                else:
-                    customer = Customer.objects.get(user=visitor_user)
-                task = task_form.save(commit=False)
-                task.customer = customer
-            else:
-                task = task_form.save(commit=False)
-                task.customer = request.user.customer
+    # if request.method == 'POST':
+    #     task_form = TaskForm(request.POST)
+    #     if task_form.is_valid():
+    #         if not request.user.is_authenticated:
+    #             # Create a visitor user instance
+    #             visitor_user, created = User.objects.get_or_create(
+    #                 email='visitor@gmail.com',
+    #                 defaults={'password': User.objects.make_random_password()}
+    #             )
+    #             if created:
+    #                 customer = Customer.objects.create(
+    #                     user=visitor_user,
+    #                     phone_number='080',  # Set your default value
+    #                     address='default Visitor Address',  # Set your default value
+    #                     preferences='cash',  # Set your default value
+    #                 )
+    #             else:
+    #                 customer = Customer.objects.get(user=visitor_user)
+    #             task = task_form.save(commit=False)
+    #             task.customer = customer
+    #         else:
+    #             task = task_form.save(commit=False)
+    #             task.customer = request.user.customer
 
-            task.save()
-            return redirect('home')
-    else:
-        task_form = TaskForm()
-    return render(request, 'pages/home.html', {'task_form': task_form})
+    #         task.save()
+    #         return redirect('home')
+    # else:
+    # task_form = TaskForm()
+    form = ServiceForm()
+    return render(request, 'pages/home.html', {'form': form})
 
 
 # def handle_task_dahboard(request):
 #intedn to use a diffrerent redirect fo rthis view in dashboad
+
+
+
+def submit_form(request):
+    if request.method == 'POST':
+        form = ServiceForm(request.POST)
+        if form.is_valid():
+            task_type = form.cleaned_data['task_type']
+            title = form.cleaned_data['title']
+            description = form.cleaned_data['description']
+            due_date = form.cleaned_data['due_date']
+            pickup_location = form.cleaned_data['pickup_location']
+            pickup_datetime = form.cleaned_data['pickup_datetime']
+            delivery_location = form.cleaned_data['delivery_location']
+            delivery_datetime = form.cleaned_data['delivery_datetime']
+            delivery_category = form.cleaned_data['delivery_category']
+
+        if not request.user.is_authenticated:
+            # Create a visitor user instance
+            print('not authenticated...................')
+            visitor_user, created = User.objects.get_or_create(
+                email='visitor@gmail.com',
+                defaults={'password': User.objects.make_random_password()}
+                )
+            if created:
+                customer = Customer.objects.create(
+                    user=visitor_user,
+                    phone_number='080',  # Set your default value
+                    address='default Visitor Address',  # Set your default value
+                    preferences='cash',  # Set your default value
+                    )
+            else:
+                customer = Customer.objects.get(user=visitor_user)
+        else:
+            customer = request.user.customer
+        
+        # Create Task, Pickup, and Delivery objects as needed
+        
+        task = Task.objects.create(
+            task_type=task_type,
+            title=title,
+            description=description,
+            due_date=due_date,
+            customer=customer
+        )
+        if task_type == 'pickup_delivery':
+            pickup = Pickup.objects.create(
+                pickup_location=pickup_location,
+                pickup_datetime=pickup_datetime,
+            )
+            delivery = Delivery.objects.create(
+                delivery_location=delivery_location,
+                delivery_datetime=delivery_datetime,
+                category=delivery_category,
+            )
+            task.pickup = pickup
+            task.delivery = delivery
+
+        # Save the Task object
+        task.save()
+    else:
+        form = ServiceForm()
+
+        # Redirect to the home page (change 'home' to the actual URL name of your home page)
+        return redirect('home')
+    
+    # Handle GET requests (if needed)
+    return render(request, 'pages/home.html')

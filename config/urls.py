@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 from swiftservice.users.views import home
 urlpatterns = [
     path("",home , name="home"),
-    path("admin/", include('admin_soft.urls')),
+    # path("admin/", include('admin_soft.urls')),
     path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
@@ -29,7 +29,7 @@ if settings.DEBUG:
         ),
         path(
             "403/",
-            default_views.permission_denied,
+            default_views.permission_denied, 
             kwargs={"exception": Exception("Permission Denied")},
         ),
         path(

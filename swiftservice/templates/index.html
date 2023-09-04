@@ -111,6 +111,67 @@
   <script src="{% static 'vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
   <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
   <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
+  <!-- <script>
+var currentSection = "taskSection";
+var nextButton = document.getElementById("nextButton");
+
+function handleTaskTypeChange() {
+    var taskType = document.getElementById("id_task_type").value;
+    var pickupSection = document.getElementById("pickupSection");
+    var deliverySection = document.getElementById("deliverySection");
+
+    if (taskType === "pickup_delivery") {
+        pickupSection.style.display = "block";
+        deliverySection.style.display = "none";
+        nextButton.textContent = "Next to Pickup";
+    } else if (taskType === "cleaning" || taskType === "task_delegation") {
+        pickupSection.style.display = "none";
+        deliverySection.style.display = "none";
+        nextButton.style.display = "none";
+        document.getElementById("submitButton").style.display = "block";
+    } else {
+        pickupSection.style.display = "none";
+        deliverySection.style.display = "none";
+        nextButton.style.display = "none";
+        document.getElementById("submitButton").style.display = "block";
+    }
+}
+
+nextButton.addEventListener("click", function () {
+    if (currentSection === "taskSection") {
+        var taskType = document.getElementById("id_task_type").value;
+        if (taskType === "pickup_delivery") {
+            currentSection = "pickupSection";
+            nextButton.textContent = "Next to Delivery";
+        } else if (taskType === "cleaning" || taskType === "task_delegation") {
+            currentSection = "submitButton";
+            nextButton.style.display = "none";
+            document.getElementById("submitButton").style.display = "block";
+        }
+    } else if (currentSection === "pickupSection") {
+        currentSection = "deliverySection";
+        nextButton.textContent = "Next to Delivery";
+    } else if (currentSection === "deliverySection") {
+        currentSection = "submitButton";
+        nextButton.style.display = "none";
+        document.getElementById("submitButton").style.display = "block";
+    }
+    showSection(currentSection);
+});
+
+function showSection(sectionId) {
+    var sections = ["taskSection", "pickupSection", "deliverySection", "submitButton"];
+    for (var i = 0; i < sections.length; i++) {
+        var section = document.getElementById(sections[i]);
+        if (sections[i] === sectionId) {
+            section.style.display = "block";
+        } else {
+            section.style.display = "none";
+        }
+    }
+}
+
+</script> -->
 
   <!-- Template Main JS File -->
   <script src="{% static 'js/main.js' %}"></script>

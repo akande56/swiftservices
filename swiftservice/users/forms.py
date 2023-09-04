@@ -98,17 +98,36 @@ class ServiceProviderSignupForm(SignupForm):
         fields = ['email', 'password1', 'password2']
 
 
-class TaskForm(forms.ModelForm):
-    """Form definition for Task."""
+# class TaskForm(forms.ModelForm):
+#     """Form definition for Task."""
 
-    class Meta:
-        """Meta definition for Taskform."""
+#     class Meta:
+#         """Meta definition for Taskform."""
 
-        model = Task
-        fields = (
-            'task_type',
-            'title',
-            'description',
-            'due_date'
-            )
+#         model = Task
+#         fields = (
+#             'task_type',
+#             'title',
+#             'description',
+#             'due_date'
+#             )
         
+class ServiceForm(forms.Form):
+    TASK_TYPES = [
+        ('pickup_delivery', 'Pickup and Delivery'),
+        ('cleaning', 'Cleaning Service (Coming Soon)'),
+        ('task_delegation', 'Task Delegation (Coming Soon)'),
+    ]
+
+    task_type = forms.ChoiceField(choices=TASK_TYPES, widget=forms.Select(attrs={'onchange': 'handleTaskTypeChange();'}))
+    title = forms.CharField(max_length=100)
+    description = forms.CharField(widget=forms.Textarea)
+    due_date = forms.DateTimeField()
+    pickup_location = forms.CharField(max_length=100, required=False)
+    pickup_datetime = forms.DateTimeField(required=False)
+    delivery_location = forms.CharField(max_length=100, required=False)
+    delivery_datetime = forms.DateTimeField(required=False)
+    delivery_category = forms.ChoiceField(
+        choices=[('shoes', 'Shoes'), ('electronics', 'Electronics'), ('jewelry', 'Jewelry')],
+        required=False,
+    )

@@ -75,24 +75,51 @@ class ServiceProvider(models.Model):
     availability = models.CharField(max_length=100)
 
 
+class Pickup(models.Model):
+    pickup_location = models.CharField(max_length=100)
+    pickup_datetime = models.DateTimeField()
+    additional_notes = models.TextField(blank=True)
+
+    def __str__(self):
+        return f"Pickup  at {self.pickup_datetime}"
+
+
+class Delivery(models.Model):
+    CATEGORY_CHOICES = (
+        ('shoes', 'Shoes'),
+        ('electronics', 'Electronics'),
+        ('jewelry', 'Jewelry'),
+        # Add more category options as needed
+    )
+    delivery_location = models.CharField(max_length=100)
+    delivery_datetime = models.DateTimeField()
+    category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    status = models.CharField(max_length=20, default='pending')
+
+    def __str__(self):
+        return f"Delivery  at {self.delivery_datetime}"
+
 
 class Task(models.Model):
     TASK_TYPES = (
         ('pickup_delivery', 'Pickup and Delivery'),
-        ('task_delegation', 'Task Delegation'),
-        ('cleaning', 'Cleaning Service'),
+        ('cleaning', 'Cleaning Service (Coming Soon)'),
+        ('task_delegation', 'Task Delegation (Coming Soon)'),
     )
     task_type = models.CharField(max_length=20, choices=TASK_TYPES)
     title = models.CharField(max_length=100)
     description = models.TextField()
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='created_tasks')
     assignee = models.ForeignKey(SupportStaff, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_tasks')
+    pickup = models.OneToOneField(Pickup, on_delete=models.SET_NULL, null=True, blank=True, related_name='task_pickup')
+    delivery = models.OneToOneField(Delivery, on_delete=models.SET_NULL, null=True, blank=True, related_name='task_delivery')
     created_at = models.DateTimeField(auto_now_add=True)
     due_date = models.DateTimeField()
     completed = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
+
 
 
 class TaskComment(models.Model):
@@ -105,7 +132,7 @@ class TaskComment(models.Model):
         return f"Comment by {self.user.username} on task: {self.task.title}"
 
 
-class TaskAttachment(models.Model):
+class TaskAttachment(models.Model)  :
     task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='attachments')
     attachment = models.FileField(upload_to='task_attachments/')
     uploaded_by = models.ForeignKey(Customer, on_delete=models.CASCADE)
@@ -113,3 +140,6 @@ class TaskAttachment(models.Model):
 
     def __str__(self):
         return f"Attachment for task: {self.task.title}"
+
+
+        # <script async src="https://whatsform.com/launcher.js" id="wf-widget" data-id="MY_kW1" data-message="Message on WhatsApp" ></script>

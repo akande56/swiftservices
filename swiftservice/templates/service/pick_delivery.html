@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Form</title>
+</head>
+<body>
+    <form id="serviceForm">
+        <!-- Task Form Section -->
+        <div id="taskSection">
+            <h2>Task Information</h2>
+            <select id="taskType" onchange="handleTaskTypeChange()">
+                <option value="pickup_delivery">Pickup and Delivery</option>
+                <option value="cleaning" disabled>Cleaning Service (Coming Soon)</option>
+                <option value="task_delegation" disabled>Task Delegation (Coming Soon)</option>
+            </select>
+            <input type="text" id="taskTitle" placeholder="Title">
+            <textarea id="taskDescription" placeholder="Description"></textarea>
+            <button type="button" id="nextButton">Next</button>
+        </div>
+
+        <!-- Pickup Form Section -->
+        <div id="pickupSection" style="display: none;">
+            <h2>Pickup Information</h2>
+            <input type="text" id="pickupLocation" placeholder="Pickup Location">
+            <input type="datetime-local" id="pickupDatetime" placeholder="Pickup Date and Time">
+        </div>
+
+        <!-- Delivery Form Section -->
+        <div id="deliverySection" style="display: none;">
+            <h2>Delivery Information</h2>
+            <input type="text" id="deliveryLocation" placeholder="Delivery Location">
+            <input type="datetime-local" id="deliveryDatetime" placeholder="Delivery Date and Time">
+            <select id="deliveryCategory">
+                <option value="shoes">Shoes</option>
+                <option value="electronics">Electronics</option>
+                <option value="jewelry">Jewelry</option>
+                <!-- Add more category options as needed -->
+            </select>
+        </div>
+
+        <!-- Cleaning Form Section -->
+        <div id="cleaningSection" style="display: none;">
+            <h2>Cleaning Service (Coming Soon)</h2>
+        </div>
+
+        <!-- Task Delegation Form Section -->
+        <div id="taskDelegationSection" style="display: none;">
+            <h2>Task Delegation (Coming Soon)</h2>
+        </div>
+
+        <button type="button" id="submitButton" style="display: none;">Submit</button>
+    </form>
+
+    <script>
+        var currentSection = "taskSection";
+        var nextButton = document.getElementById("nextButton");
+        var submitButton = document.getElementById("submitButton");
+    
+        nextButton.addEventListener("click", function () {
+            if (currentSection === "taskSection") {
+                var taskType = document.getElementById("taskType").value;
+                if (taskType === "pickup_delivery") {
+                    currentSection = "pickupSection";
+                } else if (taskType === "cleaning" || taskType === "task_delegation") {
+                    currentSection = "taskSection";
+                    nextButton.style.display = "none";
+                    submitButton.style.display = "none";
+                }
+            } else if (currentSection === "pickupSection") {
+                currentSection = "deliverySection";
+                nextButton.innerHTML = "Next to Submit";
+            }
+            showSection(currentSection);
+        });
+    
+        function showSection(sectionId) {
+            var sections = ["taskSection", "pickupSection", "deliverySection", "cleaningSection", "taskDelegationSection"];
+            for (var i = 0; i < sections.length; i++) {
+                var section = document.getElementById(sections[i]);
+                if (sections[i] === sectionId) {
+                    section.style.display = "block";
+                } else {
+                    section.style.display = "none";
+                }
+            }
+        }
+    
+        function handleTaskTypeChange() {
+            var taskType = document.getElementById("taskType").value;
+            if (taskType === "pickup_delivery") {
+                showSection("pickupSection");
+                nextButton.style.display = "block";
+            } else if (taskType === "cleaning" || taskType === "task_delegation") {
+                showSection("taskSection");
+                nextButton.style.display = "none";
+                submitButton.style.display = "none";
+            }
+        }
+    
+        submitButton.addEventListener("click", function () {
+            // Collect and submit form data to the server using AJAX
+            var taskTitle = document.getElementById("taskTitle").value;
+            var taskDescription = document.getElementById("taskDescription").value;
+            var serviceType = document.getElementById("taskType").value;
+            var pickupLocation = document.getElementById("pickupLocation").value;
+            var pickupDatetime = document.getElementById("pickupDatetime").value;
+            var deliveryLocation = document.getElementById("deliveryLocation").value;
+            var deliveryDatetime = document.getElementById("deliveryDatetime").value;
+            var deliveryCategory = document.getElementById("deliveryCategory").value;
+    
+            // Construct data object based on service type
+            var data = {
+                taskTitle: taskTitle,
+                taskDescription: taskDescription,
+                serviceType: serviceType
+            };
+    
+            if (serviceType === "pickup_delivery") {
+                data.pickupLocation = pickupLocation;
+                data.pickupDatetime = pickupDatetime;
+                data.deliveryLocation = deliveryLocation;
+                data.deliveryDatetime = deliveryDatetime;
+                data.deliveryCategory = deliveryCategory;
+            } else if (serviceType === "cleaning") {
+                // Add cleaning service form fields to data object
+            } else if (serviceType === "task_delegation") {
+                // Add task delegation form fields to data object
+            }
+    
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/users/submit_form/", true); // Replace with the correct URL for form submission
+            xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert("Form submitted successfully!");
+                        // You can optionally redirect to a success page here
+                    } else {
+                        console.error("Error:", xhr.status, xhr.statusText);
+                        alert("Form submission failed. Please try again.");
+                    }
+                }
+            };
+    
+            xhr.send(JSON.stringify(data));
+        });
+    </script>
+    
+</body>
+</html>

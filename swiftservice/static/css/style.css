@@ -10,7 +10,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Poppins", sans-serif;
+  font-family:  sans-serif;
   color: #444444;
 }
 
@@ -30,7 +30,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Satisfy", sans-serif;
+  font-family: sans-serif;
 }
 
 /*--------------------------------------------------------------

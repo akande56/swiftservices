@@ -536,40 +536,52 @@
 </section><!-- End Events Section -->
 
 <!-- ======= Book A Table Section ======= -->
-<section id="book-a-table" class="book-a-table">
-  <div class="container">
 
-    <div class="section-title">
-      <h2>Request<span>Service</span></h2>
-      <p>Fill the form and select appropriet task for the service you require.</p>
-    </div>
-    <form class="offset-md-4" action="{% url 'home' %}" method="post">
-      {% csrf_token %}
-    
-    <div class="form-group col-md-6">
-      <label for="{{task_form.task_type.id_for_label}}">Task type</label>
-      <select name="{{task_form.task_type.name}}" id="{{task_form.task_type.id_for_label}}" class="form-control">
-        {% for value, label in task_form.task_type.field.choices %}
-      <option value="{{ value }}">{{ label }}</option>
-    {% endfor %}
-      </select>
-    </div>
-    <div class="form-group col-md-6">
-      {{ task_form.title|as_crispy_field }}
-  </div>
 
-  <div class="form-group col-md-6">
-    <label for="{{ task_form.description.id_for_label }}">Description</label>
-    <textarea class="form-control" name="{{ task_form.description.name }}" rows="4"></textarea>
-  </div>
-    <div class="form-group col-md-6">
-      <label for="{{ task_form.due_date.id_for_label }}">Due Date</label>
-      <input type="date" class="form-control bg-light" name="{{ task_form.due_date.name }}">
-  </div>
-    <button type="submit" class="btn mt-4" style="background-color: #ffa012;">Create Task</button>
-    </form>
-  </div>
-</section><!-- End Book A Table Section -->
+
+<iframe src="https://whatsform.com/Nw_iu1"  width="100%" height="600" frameBorder="0"></iframe>
+<script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+<div class="elfsight-app-3092d86d-d5a4-43c8-a04f-fdc3786ddfa8"></div>
+<!-- <form id="serviceForm" method="post" action="{% url 'users:submit_form' %}">
+  {% csrf_token %}
+  <div id="taskSection">
+    <h2>Task Information</h2>
+    <select id="id_task_type" name="task_type" onchange="handleTaskTypeChange()">
+        <option value="pickup_delivery">Pickup and Delivery</option>
+        <option value="cleaning" disabled>Cleaning Service (Coming Soon)</option>
+        <option value="task_delegation" disabled>Task Delegation (Coming Soon)</option>
+    </select>
+    <input type="text" id="id_title" name="title" placeholder="Title">
+    <textarea id="id_description" name="description" placeholder="Description"></textarea>
+    <input type="datetime-local" id="id_due_date" name="due_date" placeholder="Due Date and Time">
+</div>
+
+<div id="pickupSection" style="display: none;">
+    <h2>Pickup Information</h2>
+    <input type="text" id="id_pickup_location" name="pickup_location" placeholder="Pickup Location">
+    <input type="datetime-local" id="id_pickup_datetime" name="pickup_datetime" placeholder="Pickup Date and Time">
+</div>
+
+<div id="deliverySection" style="display: none;">
+    <h2>Delivery Information</h2>
+    <input type="text" id="id_delivery_location" name="delivery_location" placeholder="Delivery Location">
+    <input type="datetime-local" id="id_delivery_datetime" name="delivery_datetime" placeholder="Delivery Date and Time">
+    <select id="id_delivery_category" name="delivery_category">
+        <option value="shoes">Shoes</option>
+        <option value="electronics">Electronics</option>
+        <option value="jewelry">Jewelry</option>
+
+    </select>
+</div>
+
+<button type="button" id="nextButton">Next</button>
+
+
+
+<button type="submit" id="submitButton" style="display: none;">Submit</button>
+</form> -->
+
+
 
 <!-- ======= Gallery Section ======= -->
 <section id="gallery" class="gallery">
