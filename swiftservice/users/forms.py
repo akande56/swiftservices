@@ -5,9 +5,9 @@ from django.contrib.auth import get_user_model
 from django.forms import EmailField
 from django.utils.translation import gettext_lazy as _
 from django import forms
-from .models import Customer, SupportStaff, ServiceProvider, Task
-User = get_user_model()
+from .models import Customer, SupportStaff, ServiceProvider, Task, Restaurant, Dish
 
+User = get_user_model()
 
 class UserAdminChangeForm(admin_forms.UserChangeForm):
     class Meta(admin_forms.UserChangeForm.Meta):
@@ -87,11 +87,11 @@ class ServiceProviderSignupForm(SignupForm):
     email = forms.EmailField()
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
-    phone_number = forms.CharField(max_length=11)
-    address = forms.CharField()
-    skills = forms.CharField()
-    service_area = forms.CharField()
-    availability = forms.CharField()
+    phone_number = forms.CharField(max_length=15)
+    address = forms.CharField(max_length=100)
+    service = forms.CharField(max_length=200)
+    service_area = forms.CharField(max_length=100)
+    availability = forms.CharField(max_length=100)
 
     class Meta:
         model = User
@@ -131,3 +131,17 @@ class ServiceForm(forms.Form):
         choices=[('shoes', 'Shoes'), ('electronics', 'Electronics'), ('jewelry', 'Jewelry')],
         required=False,
     )
+
+
+# resturant
+
+class RestaurantForm(forms.ModelForm):
+    class Meta:
+        model = Restaurant
+        fields = ['name', 'description', 'image']
+        
+
+class DishForm(forms.ModelForm):
+    class Meta:
+        model = Dish
+        fields = ['name', 'description', 'price', 'image']

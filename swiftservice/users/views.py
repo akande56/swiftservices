@@ -6,12 +6,12 @@ from django.urls import reverse,reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
 from django.views.generic.edit import CreateView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from allauth.account.views import SignupView
-from .forms import CustomerSignupForm, SupportStaffSignupForm, ServiceProviderSignupForm, ServiceForm
-from .models import Customer, ServiceProvider, SupportStaff, Pickup, Delivery, Task
+from .forms import CustomerSignupForm, SupportStaffSignupForm, ServiceProviderSignupForm, ServiceForm, RestaurantForm, DishForm
+from .models import Customer, ServiceProvider, SupportStaff, Pickup, Delivery, Task, Restaurant
 User = get_user_model()
 
 
@@ -69,50 +69,51 @@ class CustomerSignupView(CreateView):
         
         return super().form_valid(form)
 
+def support_staff_signup(request):
+    if request.method == 'POST':
+        form = SupportStaffSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save(request)
+            user.is_support_staff = True
+            user.save()
+            job_title = form.cleaned_data['job_title']
+            department = form.cleaned_data['department']
+            skills = form.cleaned_data['skills']
+            schedule = form.cleaned_data['schedule']
+            
+            # Create SupportStaff instance
+            SupportStaff.objects.create(user=user, job_title=job_title, department=department,
+                                        skills=skills, schedule=schedule)
+            
+            return redirect('users:detail', pk=user.pk)  # Replace 'home' with your success URL name
+    else:
+        form = SupportStaffSignupForm()
+    
+    return render(request, 'account/signup2.html', {'form': form})
 
-class SupportStaffSignupView(SignupView):
-    template_name = 'account/signup.html'
-    form_class = SupportStaffSignupForm
-    success_url = _('home')  # Replace with your success URL
-
-    def form_valid(self, form):
-        user = form.save(self.request)
-        user.is_support_staff = True
-        user.save()
-        job_title = form.cleaned_data['job_title']
-        department = form.cleaned_data['department']
-        skills = form.cleaned_data['skills']
-        schedule = form.cleaned_data['schedule']
-        
-        # Create SupportStaff instance
-        SupportStaff.objects.create(user=user, job_title=job_title, department=department,
-                                    skills=skills, schedule=schedule)
-        
-        return super().form_valid(form)
-
-class ServiceProviderSignupView(SignupView):
-    template_name = 'account/signup.html'
-    form_class = ServiceProviderSignupForm
-    success_url = _('uses:detail')  # Replace with your success URL
-
-    def form_valid(self, form):
-        user = form.save(self.request)
-        user.is_service_provider = True
-        user.save()
-        phone_number = form.cleaned_data['phone_number']
-        address = form.cleaned_data['address']
-        skills = form.cleaned_data['skills']
-        service_area = form.cleaned_data['service_area']
-        availability = form.cleaned_data['availability']
-        
-        # Create ServiceProvider instance
-        ServiceProvider.objects.create(user=user, phone_number=phone_number, address=address,
-                                        skills=skills, service_area=service_area,
-                                        availability=availability)
-        
-        return super().form_valid(form)
-
-
+def service_provider_signup(request):
+    if request.method == 'POST':
+        form = ServiceProviderSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save(request)
+            user.is_service_provider = True
+            user.save()
+            phone_number = form.cleaned_data['phone_number']
+            address = form.cleaned_data['address']
+            service = form.cleaned_data['service']
+            service_area = form.cleaned_data['service_area']
+            availability = form.cleaned_data['availability']
+            
+            # Create ServiceProvider instance
+            ServiceProvider.objects.create(user=user, phone_number=phone_number, address=address,
+                                            service=service, service_area=service_area,
+                                            availability=availability)
+            
+            return redirect('users:detail', pk=user.pk )  # Replace with your actual success URL
+    else:
+        form = ServiceProviderSignupForm()
+    
+    return render(request, 'account/signup3.html', {'form': form})
 
 def home(request):
     # if request.method == 'POST':
@@ -214,6 +215,58 @@ def submit_form(request):
 
         # Redirect to the home page (change 'home' to the actual URL name of your home page)
         return redirect('home')
-    
+
     # Handle GET requests (if needed)
     return render(request, 'pages/home.html')
+
+
+# resturant
+
+def add_restaurant_view(request):
+    user_restaurants = Restaurant.objects.filter(owner=request.user)
+
+    if request.method == 'POST':
+        form = RestaurantForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_restaurant = form.save(commit=False)
+            new_restaurant.owner = request.user
+            new_restaurant.save()
+            return redirect('users:add_restaurant')
+    else:
+        form = RestaurantForm()
+        dish_form = DishForm()
+    return render(request, 'restaurant/add.html', {'form': form, 'dish_form': dish_form, 'restaurants': user_restaurants})
+
+
+def add_dish_view(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+
+    if request.method == 'POST':
+        dish_form = DishForm(request.POST, request.FILES)
+        if dish_form.is_valid():
+            new_dish = dish_form.save(commit=False)
+            new_dish.restaurant = restaurant
+            new_dish.save()
+
+            response_data = {'message': 'Dish added successfully'}
+            return JsonResponse(response_data)
+
+    return redirect('users:add_restaurant')  # Redirect to a suitable page if needed
+
+
+def restaurant_dishes_view(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+    dishes = restaurant.dish_set.all()
+    
+    return render(request, 'restaurant/dishes.html', {'restaurant': restaurant, 'dishes': dishes})
+
+
+# Restaurant users
+def restaurant_all(request):
+    return render(request, 'restaurant/restaurant_list.html', {'restaurants': Restaurant.objects.all()})
+
+def restaurant_dishes_all(request, restaurant_id):
+    restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
+    dishes = restaurant.dish_set.all()
+    print('ssssssssssssssss')
+    return render(request, 'restaurant/dishes_all.html', {'restaurant': restaurant, 'dishes': dishes})

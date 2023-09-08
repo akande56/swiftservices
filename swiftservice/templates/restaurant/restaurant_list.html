@@ -1,0 +1,39 @@
+{% extends "index.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Restaurants
+{% endblock title %}
+
+
+{% block content %}
+<style>
+    body {
+        background-color: rgba(18, 1, 1, 0.144);
+    }
+</style>
+
+<section id="chefs" class="chefs">
+    <div class="container">
+        <div class="row">
+            {% for restaurant in restaurants %}
+            <div class="card col-md-3">
+                <div class="card-body">
+                    <div class="">
+                        <div class="restaurant-listing">
+                            {% if restaurant.image %}
+                            <img width="200" src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}" class="restaurant-image">
+                            {% endif %}
+                            <h2 class="restaurant-title">{{ restaurant.name }}</h2>
+                            <p class="restaurant-description">{{ restaurant.description }}</p>
+                            <a class="btn btn-secondary" href="{% url 'users:restaurant_dishes_all' restaurant.id %}">dishes</a>
+                        </div> 
+                  </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock content %}

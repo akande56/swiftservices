@@ -8,24 +8,35 @@
   {% translate "Signup" %}
 {% endblock title %}
 {% block content %}
-  <div class="offset-4 col-md-6 mt-3 mb-3">
-    <h1>{% translate "Sign Up" %}</h1>
-  <p>
-    {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
-  </p>
-  <form class="signup"
-        id="signup_form"
-        method="post"
-        action="">
-    {% csrf_token %}
-    {{ form|crispy }}
-    {% if redirect_field_value %}
-      <input type="hidden"
-             name="{{ redirect_field_name }}"
-             value="{{ redirect_field_value }}" />
-    {% endif %}
-    <button class="btn btn-primary" type="submit">{% translate "Sign Up" %} »</button>
-  </form>
+<style>
+   body{
+    background-color: rgba(18, 1, 1, 0.144);
+  }
+</style>
+  <div class="content">
+    <div class="container">
+      <div class="row">
+        <div class="offset-4 col-md-6 mt-3 mb-3">
+          <h1>{% translate "Sign Up(Customer)" %}</h1>
+        <p>
+          {% blocktranslate %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktranslate %}
+        </p>Rikkos New layout, Behind Al-ikhlas
+        <form class="signup"
+              id="signup_form"
+              method="post"
+              action="">
+          {% csrf_token %}
+          {{ form|crispy }}
+          {% if redirect_field_value %}
+            <input type="hidden"
+                   name="{{ redirect_field_name }}"
+                   value="{{ redirect_field_value }}" />
+          {% endif %}
+          <button class="btn btn-primary" type="submit">{% translate "Sign Up" %} »</button>
+        </form>
+        </div>
+      </div>
+    </div>
   </div>
 
 {% endblock content %}

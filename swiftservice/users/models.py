@@ -45,6 +45,9 @@ class SupportStaff(models.Model):
     department = CharField(max_length=100)
     skills = models.CharField(max_length=100)
     schedule = CharField(max_length=200)
+    
+    def __str__(self):
+        return str(self.user.email)
 
 PAYMENT_PREFERENCES_CHOICES = (
     ('credit_card', 'Credit Card'),
@@ -70,9 +73,12 @@ class ServiceProvider(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone_number = CharField(max_length=15)
     address = models.CharField(max_length=100)
-    skills = models.CharField(max_length=200)
+    service = models.CharField(max_length=200)
     service_area = models.CharField(max_length=100)
     availability = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.user.email)
 
 
 class Pickup(models.Model):
@@ -142,4 +148,28 @@ class TaskAttachment(models.Model)  :
         return f"Attachment for task: {self.task.title}"
 
 
-        # <script async src="https://whatsform.com/launcher.js" id="wf-widget" data-id="MY_kW1" data-message="Message on WhatsApp" ></script>
+# <script async src="https://whatsform.com/launcher.js" id="wf-widget" data-id="MY_kW1" data-message="Message on WhatsApp" ></script>
+
+# Define a model for Restaurant
+class Restaurant(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    image = models.ImageField(upload_to='restaurant_images/', blank=True, null=True)  # Add this field
+
+    def __str__(self):
+        return self.name
+
+# Define a model for Dish Category (e.g., Appetizer, Main Course, Dessert)
+
+
+# Define a model for Dish
+class Dish(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to='dishes/', blank=True, null=True)
+    restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

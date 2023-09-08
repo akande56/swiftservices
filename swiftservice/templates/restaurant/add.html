@@ -1,0 +1,114 @@
+{% extends 'layoutss/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+  Add Restaurant or Dish
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- Dropdown for Adding a Restaurant -->
+    <div class="card card-plain">
+        <div class="card-body">
+            <div class="row">
+                <div class="mb-4 col-md-5">
+                    <h2>Add a New Restaurant</h2>
+                    <form method="post" action="{% url 'users:add_restaurant' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-primary">Add Restaurant</button>
+                    </form>
+                </div>
+                <div class="col-md-7">
+                    <img src="{% static 'img/gallery/gallery-1.jpg' %}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- List of User-Owned Restaurants -->
+    <div class="card card-plain">
+        <div class="card-body">
+            <h4 class="mt-5 h2 text-primary">Restaurants</h4>
+    <div class="row">
+        {% for restaurant in restaurants %}
+        <div class="col-md-4">
+            <div class="restaurant-listing">
+                <h2 class="restaurant-title">{{ restaurant.name }}</h2>
+                <p class="restaurant-description">{{ restaurant.description }}</p>
+                {% if restaurant.image %}
+                <img src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}" class="restaurant-image">
+                {% endif %}
+            </div>
+            <div class="mt-2">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDishModal{{ restaurant.id }}">
+                    Add Dish
+                </button>
+                <a class="btn btn-secondary" href="{% url 'users:restaurant_dishes' restaurant.id %}">dishes</a>
+            </div>
+           
+        </div>
+        <!-- Add Dish Modal -->
+        <div class="modal fade" id="addDishModal{{ restaurant.id }}" tabindex="-1" role="dialog" aria-labelledby="addDishModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addDishModalLabel">Add a New Dish to {{ restaurant.name }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Add Dish Form -->
+                        <form id="addDishForm{{ restaurant.id }}" method="post" action="{% url 'users:add_dish' restaurant.id %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ dish_form|crispy }}
+                            <button type="button" class="btn btn-primary" id="submitDish{{ restaurant.id }}">Add Dish</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% if forloop.counter|divisibleby:3 and not forloop.last %}
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+    </div>
+        </div>
+    </div>
+   
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    {% for restaurant in restaurants %}
+    var addDishForm{{ restaurant.id }} = document.getElementById('addDishForm{{ restaurant.id }}');
+    var submitDish{{ restaurant.id }} = document.getElementById('submitDish{{ restaurant.id }}');
+
+    submitDish{{ restaurant.id }}.addEventListener('click', function () {
+        var formData = new FormData(addDishForm{{ restaurant.id }});
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', "{% url 'users:add_dish' restaurant.id %}", true);
+        xhr.setRequestHeader('X-CSRFToken', "{{ csrf_token }}");
+
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Request was successful, handle the response here
+                var response = JSON.parse(xhr.responseText);
+                console.log(response.message);
+                alert(response.message)
+                // Close the modal if needed
+                $('#addDishModal{{ restaurant.id }}').modal('hide');
+            } else {
+                // Request failed, handle errors here
+                console.error("An error occurred while adding the dish.");
+            }
+        };
+
+        xhr.send(formData);
+    });
+    {% endfor %}
+});
+</script>
+{% endblock content %}

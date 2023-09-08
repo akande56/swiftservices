@@ -1,0 +1,29 @@
+{% extends 'layoutss/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+  Dishes for {{ restaurant.name }}
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Dishes for {{ restaurant.name }}</h1>
+
+    <div class="row">
+        {% for dish in dishes %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if dish.image %}
+                <img src="{{ dish.image.url }}" class="card-img-top" alt="{{ dish.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ dish.name }}</h5>
+                    <p class="card-text" style="font-style: italic;">{{ dish.description }}</p>
+                    <p class="card-text" style="font-weight: bold;">Price: #{{ dish.price }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}
