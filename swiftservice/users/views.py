@@ -268,5 +268,4 @@ def restaurant_all(request):
 def restaurant_dishes_all(request, restaurant_id):
     restaurant = get_object_or_404(Restaurant, pk=restaurant_id)
     dishes = restaurant.dish_set.all()
-    print('ssssssssssssssss')
     return render(request, 'restaurant/dishes_all.html', {'restaurant': restaurant, 'dishes': dishes})

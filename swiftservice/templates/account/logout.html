@@ -1,12 +1,13 @@
-{% extends "account/base.html" %}
+{% extends "index.html" %}
 
 {% load i18n %}
 
-{% block head_title %}
+{% block title %}
   {% translate "Sign Out" %}
-{% endblock head_title %}
-{% block inner %}
-  <h1>{% translate "Sign Out" %}</h1>
+{% endblock title %}
+{% block content %}
+  <div class="col-md-6 offset-4 mt-5 mb-3 py-5">
+    <h1>{% translate "Sign Out" %}</h1>
   <p>{% translate "Are you sure you want to sign out?" %}</p>
   <form method="post" action="{% url 'account_logout' %}">
     {% csrf_token %}
@@ -17,4 +18,5 @@
     {% endif %}
     <button class="btn btn-danger" type="submit">{% translate "Sign Out" %}</button>
   </form>
-{% endblock inner %}
+  </div>
+{% endblock content %}

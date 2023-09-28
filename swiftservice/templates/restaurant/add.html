@@ -6,7 +6,7 @@
 {% endblock title %}
 
 {% block content %}
-<div class="container mt-4">
+<div class="container">
     <!-- Dropdown for Adding a Restaurant -->
     <div class="card card-plain">
         <div class="card-body">
@@ -29,20 +29,20 @@
     <!-- List of User-Owned Restaurants -->
     <div class="card card-plain">
         <div class="card-body">
-            <h4 class="mt-5 h2 text-primary">Restaurants</h4>
+            <h4 class="h2 text-primary">Your Restaurants</h4>
     <div class="row">
         {% for restaurant in restaurants %}
         <div class="col-md-4">
             <div class="restaurant-listing">
                 <h2 class="restaurant-title">{{ restaurant.name }}</h2>
-                <p class="restaurant-description">{{ restaurant.description }}</p>
                 {% if restaurant.image %}
                 <img src="{{ restaurant.image.url }}" alt="{{ restaurant.name }}" class="restaurant-image">
                 {% endif %}
+                <p class="restaurant-description font-italic mt-1">{{ restaurant.description }}</p>
             </div>
             <div class="mt-2">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addDishModal{{ restaurant.id }}">
-                    Add Dish
+                    Add New Dish
                 </button>
                 <a class="btn btn-secondary" href="{% url 'users:restaurant_dishes' restaurant.id %}">dishes</a>
             </div>

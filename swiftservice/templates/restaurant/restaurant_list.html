@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+{% extends "layoutss/base.html" %}
 {% load crispy_forms_tags %}
 
 {% block title %}
@@ -17,7 +17,7 @@ Restaurants
     <div class="container">
         <div class="row">
             {% for restaurant in restaurants %}
-            <div class="card col-md-3">
+            <div class="card col-md-3 mr-5">
                 <div class="card-body">
                     <div class="">
                         <div class="restaurant-listing">

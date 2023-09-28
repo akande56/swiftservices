@@ -6,10 +6,10 @@
 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
 <li><a class="nav-link scrollto" href="#about">About</a></li>
 <li><a class="nav-link scrollto" href="#menu">Coverage</a></li>
-<li><a class="nav-link scrollto" href="#specials">More</a></li>
-<li><a class="nav-link scrollto" href="#events">Partner service</a></li>
-<li><a class="nav-link scrollto" href="#chefs">Join</a></li>
-<li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
+<!-- <li><a class="nav-link scrollto" href="#specials">More</a></li> -->
+<li><a class="nav-link scrollto" href="#chefs">Vendors</a></li>
+<!-- <li><a class="nav-link scrollto" href="#chefs">Join</a></li> -->
+<!-- <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li> -->
 
 <li class="dropdown"><a href="#"><span>Signup</span> <i class="bi bi-chevron-down"></i></a>
   <ul>
@@ -31,7 +31,7 @@
   </ul>
 </li>
 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-<a href="#book-a-table" class="book-a-table-btn scrollto">Task</a>
+
 {% if request.user.is_authenticated %}
 <li><a href="{% url 'account_logout' %}">Logout</a></li>
 {% else %}
@@ -57,9 +57,9 @@
               <p class="animate__animated animate__fadeInUp">Delegate your daily tasks to us, from grocery shopping to
                 package collection, and we'll handle them efficiently and promptly.</p>
               <div>
-                <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Location(Coverage)</a>
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Request an
-                  errand</a>
+                <!-- <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Location(Coverage)</a> -->
+                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto"> Contact
+                  Us</a>
               </div>
             </div>
           </div>
@@ -74,8 +74,8 @@
                 offering efficient and timely transportation of packages, documents, and goods to various locations.</p>
               <div>
                 <!-- <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a> -->
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Deliver a
-                  package</a>
+                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto"> Contact
+                  Us</a>
               </div>
             </div>
           </div>
@@ -91,7 +91,8 @@
                 move-in/move-out cleaning, and office cleaning.</p>
               <div>
 
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book cleaning</a>
+                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto"> Contact
+                  Us</a>
               </div>
             </div>
           </div>
@@ -157,13 +158,12 @@
 </section><!-- End About Section -->
 
 <!-- ======= Whu Us Section ======= -->
-<section id="why-us" class="why-us">
+<!-- <section id="why-us" class="why-us">
   <div class="container">
 
     <div class="section-title">
       <h2>Why choose <span>Our Service</span></h2>
-      <!-- <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae
-        autem.</p> -->
+      
     </div>
 
     <div class="row">
@@ -211,7 +211,8 @@
     </div>
 
   </div>
-</section><!-- End Whu Us Section -->
+</section> -->
+<!-- End Whu Us Section -->
 
 <!-- ======= Menu Section ======= -->
 <section id="menu" class="menu">
@@ -225,8 +226,7 @@
       <div class="col-lg-12 d-flex justify-content-center">
         <ul id="menu-flters">
           <li data-filter="*" class="filter-active">Show All</li>
-          <li data-filter=".filter-starters">Errand</li>
-          <li data-filter=".filter-salads">Delivery</li>
+          <li data-filter=".filter-starters">Errand/Delivery</li>
           <li data-filter=".filter-specialty">Cleaning</li>
         </ul>
       </div>
@@ -320,126 +320,16 @@
   </div>
 </section><!-- End Menu Section -->
 
-<!-- ======= Specials Section ======= -->
-<section id="specials" class="specials">
-  <div class="container">
-
-    <div class="section-title">
-      <h2>More on<span>SwiftServices</span></h2>
-      <!-- <p></p> -->
-    </div>
-
-    <div class="row">
-      <div class="col-lg-3">
-        <ul class="nav nav-tabs flex-column">
-          <li class="nav-item">
-            <a class="nav-link active show" data-bs-toggle="tab" href="#tab-1">Misson</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-2">Vission</a>
-          </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-3">Pariatur explicabo vel</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-4">Nostrum qui quasi</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="tab" href="#tab-5">Iusto ut expedita aut</a>
-          </li> -->
-        </ul>
-      </div>
-      <div class="col-lg-9 mt-4 mt-lg-0">
-        <div class="tab-content">
-          <div class="tab-pane active show" id="tab-1">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Our mission</h3>
-                
-                <p>
-                  Swift Services is dedicated to becoming the go-to platform for logistics, errand running, and cleaning services. The business strives to simplify the lives of its clients, providing them with more time and freedom to focus on what matters most to them.
-                </p>
-              </div>
-              <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="{% static 'img/specials-1.jpg' %}" alt="" class="img-fluid">
-              </div> -->
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-2">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Our Vission</h3>
-                
-                <p>
-                  As Swift Services grows, it envisions expanding its service offerings and geographical reach. The business aims to be synonymous with reliability, speed, and customer satisfaction, making a positive impact on individuals and businesses alike.
-                </p>
-              </div>
-              <!-- <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="{% static 'img/specials-2.jpg' %}" alt="" class="img-fluid">
-              </div> -->
-            </div>
-          </div>
-          <!-- <div class="tab-pane" id="tab-3">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
-                <p class="fst-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non
-                  sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
-                <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque
-                  necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum
-                  odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
-              </div>
-              <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="assets/img/specials-3.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div>
-          <div class="tab-pane" id="tab-4">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
-                <p class="fst-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis
-                  delectus</p>
-                <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam
-                  fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed
-                  qui veritatis aperiam quia a laborum inventore</p>
-              </div>
-              <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="assets/img/specials-4.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div> -->
-          <!-- <div class="tab-pane" id="tab-5">
-            <div class="row">
-              <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
-                <p class="fst-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
-                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod
-                  eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae
-                  voluptate vel</p>
-              </div>
-              <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="assets/img/specials-5.jpg" alt="" class="img-fluid">
-              </div>
-            </div>
-          </div> -->
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section><!-- End Specials Section -->
 
 <!-- ======= Events Section ======= -->
 
 <!-- ======= Book A Table Section ======= -->
 
-
-<div class="container mt-4">
-  <h2>Delegate <span>Task</span></h2>
+<div class="section-title container mt-4">
+  <h2>Service<span>Form</span></h2>
   <div class="card">
       <div class="card-header">
-          <!-- Navigation buttons using Bootstrap's nav-tabs -->
+    
           <ul class="nav nav-tabs" id="sectionTabs">
               <li class="nav-item">
                   <a class="nav-link active" id="section1-tab" data-toggle="tab" href="#section1">Pickup & delivery</a>
@@ -454,26 +344,27 @@
       </div>
 
       <div class="card-body tab-content">
-          <!-- Section 1 content -->
+
           <div class="tab-pane fade show active" id="section1">
             <iframe src="https://whatsform.com/Nw_iu1"  width="100%" height="600" frameBorder="0"></iframe>
               
           </div>
 
-          <!-- Section 2 content -->
+
           <div class="tab-pane fade" id="section2">
               <h2>Comming soon</h2>
-              <!-- Add your content for Section 2 here -->
+
           </div>
 
-          <!-- Section 3 content -->
+
           <div class="tab-pane fade" id="section3">
               <h2>Comming soon</h2>
-              <!-- Add your content for Section 3 here -->
+
           </div>
       </div>
   </div>
 </div>
+
 
 
 
@@ -521,7 +412,7 @@
 
 
 <!-- ======= Gallery Section ======= -->
-<section id="gallery" class="gallery">
+<!-- <section id="gallery" class="gallery">
   <div class="container-fluid">
 
     <div class="section-title">
@@ -530,7 +421,7 @@
     </div>
 
     <div class="row g-0">
-      <!-- <div class="col-lg-3 col-md-4">
+      <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
           <a href="assets/img/gallery/gallery-1.jpg" class="gallery-lightbox">
             <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
@@ -594,10 +485,11 @@
         </div>
       </div>
 
-    </div> -->
+    </div>
 
   </div>
-</section><!-- End Gallery Section -->
+</section> -->
+<!-- End Gallery Section -->
 
 <!-- ======= Chefs Section ======= -->
 
@@ -605,59 +497,41 @@
   <div class="container">
 
     <div class="section-title">
-      <h2>Registered <span>Restaurants</span></h2>
+      <h2>Partnered<span> Restaurants</span></h2>
       <p>Browse and order spetacular <span>dishes</span> from certified Restaurants</p>
     </div>
 
     <div class="row">
 
-      <div class="col-lg-4 col-md-6 mt-5">
+      <div class="col-lg-4 col-md-6">
         <div class="member">
-          <div class="pic"><img src="{% static 'img/rest1.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="pic"><img src="{% static 'img/download1.jpeg' %}" class="img-fluid" alt=""></div>
           <div class="member-info">
-            
-            <div class="social">
-              <a href=""><i class="bi bi-twitter"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
+            <a href="{% url 'users:restaurant_list' %}" class="btn" style="background-color:#ffb03b;"><span>More..</span></a>
           </div>
         </div>
       </div>
 
       <div class="col-lg-4 col-md-6">
         <div class="member">
-          <div class="pic"><img src="{% static 'img/rest3.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="pic"><img src="{% static 'img/images2.jpeg' %}" class="img-fluid" alt=""></div>
           <div class="member-info">
-            
-            <div class="social">
-              <a href=""><i class="bi bi-twitter"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
+            <a href="{% url 'users:restaurant_list' %}" class="btn" style="background-color:#ffb03b;"><span>More..</span></a>
           </div>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-6 mt-5">
+      <div class="col-lg-4 col-md-6">
         <div class="member">
-          <div class="pic"><img src="{% static 'img/rest2.jpg' %}" class="img-fluid" alt=""></div>
+          <div class="pic"><img src="{% static 'img/download2.jpeg' %}" class="img-fluid" alt=""></div>
           <div class="member-info">
-            
-            <div class="social">
-              <a href=""><i class="bi bi-twitter"></i></a>
-              <a href=""><i class="bi bi-facebook"></i></a>
-              <a href=""><i class="bi bi-instagram"></i></a>
-              <a href=""><i class="bi bi-linkedin"></i></a>
-            </div>
+            <a href="{% url 'users:restaurant_list' %}" class="btn" style="background-color:#ffb03b;"><span>More..</span></a>        
           </div>
         </div>
       </div>
 
     </div>
-    <a href="{% url 'users:restaurant_list' %}" class="btn offset-10" style="background-color:#ffb03b;"><span>More..</span></a>
+    
   </div>
 </section>
 <!-- End Chefs Section -->
@@ -714,4 +588,25 @@
 
   </div>
 </section><!-- End Contact Section -->
+
+
+<footer id="footer">
+  <div class="container">
+    <h3>SwiftServices</h3>
+    <p> Whether you need logistics support, errands run, or a refreshing clean, our team of dedicated professionals is
+      just a chat away.</p>
+    <div class="social-links">
+      <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+      <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+      <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+      <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+      <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+    </div>
+
+    <div class="credits">
+
+      Designed by <a href="">Archpragmatic</a>
+    </div>
+  </div>
+</footer>
 {% endblock content %}
