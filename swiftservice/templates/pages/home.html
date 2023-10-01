@@ -112,50 +112,55 @@
   </div>
 </section><!-- End Hero -->
 
-<section id="about" class="about">
-  <div class="container-fluid">
-
-    <div class="row">
-
-      <div class="col-lg-5 align-items-stretch video-box" style='background-image: url("assets/img/about.jpg");'>
-        <a href="#" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-      </div>
-
-      <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
-
-        <div class="content">
-          <h3><strong>Swiftservices</strong></h3>
-          <p>
-            Swift Services is a dynamic and customer-centric platform that provides a wide range of logistics and
-            support services to individuals and businesses. With a commitment to simplifying everyday tasks, Swift
-            Services offers convenience and peace of mind, allowing clients to focus on their core priorities.
-          </p>
-          <!-- <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore
-            magna aliqua.
-          </p> -->
-          <ul>
-            <li><i class="bx bx-check-double"></i>
-            <strong>Logistics Solutions:</strong> Swift Services specializes in pickup and delivery services, offering efficient and
-              timely transportation of packages, documents, and goods to various locations.
-            </li>
-            <li><i class="bx bx-check-double"></i>
-              <strong>Errand Running:</strong> Delegate your daily tasks to us, from grocery shopping to package collection, and we'll handle them efficiently and promptly.
-            </li>
-            <li><i class="bx bx-check-double"></i> 
-              <strong>Cleaning Services:</strong> Our professional cleaning team will create a clean and organized environment for residential and commercial spaces through regular cleaning, deep cleaning, move-in/move-out cleaning, and office cleaning.
-            </li>
-          </ul>
+<div class="container mt-5">
+  <div class="row">
+    <h1 class="text-center" style="color: #ffb03b;">Services</h1>
+    <!-- Card 1: Errand & Logistic -->
+    <div class="col-md-4 mt-4"> <!-- Added mt-4 class for margin-top -->
+      <div class="card shadow border" style="width: 100%;">
+        <img src="{% static 'img/logistics.jpg' %}" class="card-img-top" alt="Errand & Logistic">
+        <div class="card-body">
+          <h5 class="card-title">Errand & Logistic</h5>
           
         </div>
-
+        <div class="card-footer" style="background-color: #ffb03b;">
+          <p class="card-text">Delegate your daily tasks to us, from grocery shopping to package collection, and we'll handle them efficiently and promptly.</p>
+        </div>
       </div>
-
     </div>
 
+<!-- Card 3: Swift Lunch -->
+<div class="col-md-4 mt-4"> <!-- Added mt-4 class for margin-top -->
+  <div class="card shadow border" style="width: 100%;">
+    <img src="{% static 'img/delivery.png' %}" class="card-img-top" alt="Swift Lunch">
+    <div class="card-body">
+      <h5 class="card-title">Swift Lunch</h5>
+      
+    </div>
+    <div class="card-footer" style="background-color: #ffb03b;">
+      <p class="card-text">Experience the convenience of Swift Lunch food delivery service. From your favorite local dishes to international cuisine, we bring delicious meals straight to your doorstep. Enjoy hassle-free dining without leaving your home or office.</p>
+    </div>
   </div>
-</section><!-- End About Section -->
+</div>
+
+    <!-- Card 2: Cleaning -->
+    <div class="col-md-4 mt-4"> <!-- Added mt-4 class for margin-top -->
+      <div class="card shadow border" style="width: 100%;">
+        <img src="{% static 'img/cleaning.jpg' %}" class="card-img-top" alt="Cleaning">
+        <div class="card-body">
+          <h5 class="card-title">Cleaning</h5>
+          
+        </div>
+        <div class="card-footer" style="background-color: #ffb03b;">
+          Elevate your space with our professional cleaning services. Our expert team ensures a spotless environment for homes and businesses. From regular cleaning to deep cleans, we make cleanliness effortless
+        </div>
+      </div>
+    </div>
+
+    
+  </div>
+</div>
+
 
 <!-- ======= Whu Us Section ======= -->
 <!-- <section id="why-us" class="why-us">
@@ -215,7 +220,7 @@
 <!-- End Whu Us Section -->
 
 <!-- ======= Menu Section ======= -->
-<section id="menu" class="menu">
+<!-- <section id="menu" class="menu">
   <div class="container">
 
     <div class="section-title">
@@ -259,7 +264,7 @@
         <div class="menu-ingredients">
           suleja
         </div>
-      </div>
+      </div> -->
 
       <!-- <div class="col-lg-6 menu-item filter-salads">
         <div class="menu-content">
@@ -325,45 +330,43 @@
 
 <!-- ======= Book A Table Section ======= -->
 
-<div class="section-title container mt-4" id="book-a-table">
-  <h2>Service<span>Form</span></h2>
+<div class="section-title container mt-5" id="book-a-table">
+
   <div class="card">
-      <div class="card-header">
-    
-          <ul class="nav nav-tabs" id="sectionTabs">
-              <li class="nav-item">
-                  <a class="nav-link active" id="section1-tab" data-toggle="tab" href="#section1">Pickup & delivery</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="section2-tab" data-toggle="tab" href="#section2">Cleaning</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link" id="section3-tab" data-toggle="tab" href="#section3">Task Delegation</a>
-              </li>
-          </ul>
-      </div>
-
-      <div class="card-body tab-content">
-
+    <div class="shadow" id="collapseHeader">
+      <button id="collapseButton" class="btn btn-link" style="color: #ffb03b;">
+        <span id="collapseIcon" class="bi bi-plus"></span> Request Service
+      </button>
+    </div>
+    <div id="collapseContent" class="collapsed">
+      <div class="card-body">
+        <ul class="nav nav-tabs" id="sectionTabs">
+          <li class="nav-item">
+            <a class="nav-link active" id="section1-tab" style="color: #ffb03b;" href="#section1">Pickup & delivery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="section2-tab" style="color: #ffb03b;" href="#section2">Cleaning</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="section3-tab" style="color: #ffb03b;" href="#section3">Task Delegation</a>
+          </li>
+        </ul>
+        <div class="tab-content">
           <div class="tab-pane fade show active" id="section1">
-            <iframe src="https://whatsform.com/Nw_iu1"  width="100%" height="600" frameBorder="0"></iframe>
-              
+            <iframe src="https://whatsform.com/Nw_iu1" width="100%" height="600" frameborder="0"></iframe>
           </div>
-
-
           <div class="tab-pane fade" id="section2">
-              <h2>Comming soon</h2>
-
+            <h2>Coming soon</h2>
           </div>
-
-
           <div class="tab-pane fade" id="section3">
-              <h2>Comming soon</h2>
-
+            <h2>Coming soon</h2>
           </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
+
 
 
 
@@ -502,34 +505,44 @@
     </div>
 
     <div class="row">
-
-      <div class="col-lg-4 col-md-6">
-        <div class="member">
-          <div class="pic"><img src="{% static 'img/download1.jpeg' %}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <a href="{% url 'users:restaurant_list' %}" class="btn" style="background-color:#ffb03b;"><span>More..</span></a>
+      <div class="food-list">
+        <div class="food-item">
+          <img src="{% static 'img/download2.jpeg' %}" alt="Delicious Burger">
+          <div class="food-info">
+            <h3>Fried rice</h3>
+            
+            <span class="price">#1200</span>
           </div>
         </div>
-      </div>
+      
+        <div class="food-item">
+          <img src="{% static 'img/download1.jpeg' %}" alt="Tantalizing Pizza">
+          <div class="food-info">
+            <h3>Amala with egusi</h3>
 
-      <div class="col-lg-4 col-md-6">
-        <div class="member">
-          <div class="pic"><img src="{% static 'img/images2.jpeg' %}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <a href="{% url 'users:restaurant_list' %}" class="btn" style="background-color:#ffb03b;"><span>More..</span></a>
+            <span class="price">#1000</span>
           </div>
         </div>
-      </div>
-
-      <div class="col-lg-4 col-md-6">
-        <div class="member">
-          <div class="pic"><img src="{% static 'img/download2.jpeg' %}" class="img-fluid" alt=""></div>
-          <div class="member-info">
-            <a href="{% url 'users:restaurant_list' %}" class="btn" style="background-color:#ffb03b;"><span>More..</span></a>        
+      
+        <div class="food-item">
+          <img src="{% static 'img/images2.jpeg' %}" alt="Savory Sushi">
+          <div class="food-info">
+            <h3>Fried rice with chiken</h3>
+            <span class="price">#1500</span>
           </div>
         </div>
+        
+        <div class="food-item">
+          <img src="{% static 'img/specials-4.jpg' %}" alt="Savory Sushi">
+          <div class="food-info">
+            <h3>French</h3>
+            <span class="price">#1500</span>
+          </div>
+        </div>
+      
+        <!-- Add more food items here -->
       </div>
-
+      
     </div>
     
   </div>
@@ -537,16 +550,35 @@
 <!-- End Chefs Section -->
 
 <!-- ======= Testimonials Section ======= -->
-
+<!-- <a href="{% url 'users:restaurant_list' %}" class="btn" style="background-color:#ffb03b;"><span>More..</span></a> -->
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">
   <div class="container">
-
-    <div class="section-title">
-      <h2><span>Contact</span> Us</h2>
-      <p>Ready to experience the ease and convenience of Swift Services? Contact us today to delegate your tasks and reclaim your time.</p>
+    <div class="contact-section">
+      <div class="contact-info">
+        <h2>Contact Us</h2>
+        <p>Ready to experience the ease and convenience of Swift Services? Reach out to us today!</p>
+      </div>
+      <div class="contact-form">
+        <form>
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea class="form-control" id="message" rows="4" placeholder="Your message"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
     </div>
   </div>
+  
 
   <!-- <div class="map">
     <iframe style="border:0; width: 100%; height: 350px;"

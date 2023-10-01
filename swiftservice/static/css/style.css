@@ -40,7 +40,7 @@ h6 {
   position: fixed;
   visibility: hidden;
   opacity: 0;
-  right: 15px;
+  left: 15px;
   bottom: 15px;
   z-index: 996;
   background: #ffb03b;
@@ -121,7 +121,8 @@ h6 {
 
 #header .logo h1 {
   font-size: 28px;
-  margin: 0;
+
+  margin-right: 20px;
   line-height: 1;
   font-weight: 400;
   letter-spacing: 3px;
@@ -176,6 +177,7 @@ h6 {
 */
 .navbar {
   padding: 0;
+  margin-bottom: 40px;
 }
 
 .navbar ul {
@@ -394,7 +396,7 @@ h6 {
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   background-color: rgba(39, 37, 34, 0.8);
   overflow: hidden;
   padding: 0;
@@ -402,7 +404,7 @@ h6 {
 
 #hero .carousel-item {
   width: 100%;
-  height: 100vh;
+  height: 60vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1601,4 +1603,122 @@ section {
 
 #footer .credits {
   font-size: 13px;
+}
+
+/*  */
+
+/* Initially hide the collapsible content */
+.collapsed {
+  display: none;
+}
+
+.food-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.food-item {
+  width: 35%;
+  max-width: 400px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.food-item:hover {
+  transform: scale(1.03);
+}
+
+.food-item img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.food-info {
+  padding: 20px;
+}
+
+.food-info h3 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.food-info p {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
+}
+
+.price {
+  display: block;
+  margin-top: 10px;
+  font-size: 20px;
+  color: #ff5722;
+  font-weight: bold;
+}
+
+
+
+/* contanct */
+.contact-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.contact-info {
+  flex: 1;
+  max-width: 50%;
+}
+
+.contact-info h2 {
+  font-size: 32px;
+  color: #333;
+}
+
+.contact-info p {
+  font-size: 18px;
+  color: #666;
+}
+
+.contact-form {
+  flex: 1;
+  max-width: 50%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+.btn-primary {
+  background-color: #ff5722;
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #ff4f1a;
 }
