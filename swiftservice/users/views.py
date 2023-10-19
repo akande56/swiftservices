@@ -145,7 +145,8 @@ def home(request):
     # else:
     # task_form = TaskForm()
     form = ServiceForm()
-    return render(request, 'pages/home.html', {'form': form})
+
+    return render(request, 'pages/home.html', {'form': form, 'restaurants': Restaurant.objects.all()})
 
 
 # def handle_task_dahboard(request):

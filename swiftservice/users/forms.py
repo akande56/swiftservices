@@ -138,7 +138,7 @@ class ServiceForm(forms.Form):
 class RestaurantForm(forms.ModelForm):
     class Meta:
         model = Restaurant
-        fields = ['name', 'description', 'image']
+        fields = ['name', 'description', 'image', 'address']
         
 
 class DishForm(forms.ModelForm):

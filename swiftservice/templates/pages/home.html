@@ -5,7 +5,7 @@
 {% block header %}
 <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
 <li><a class="nav-link scrollto" href="#about">About</a></li>
-<li><a class="nav-link scrollto" href="#menu">Coverage</a></li>
+<!-- <li><a class="nav-link scrollto" href="#menu">Coverage</a></li> -->
 <!-- <li><a class="nav-link scrollto" href="#specials">More</a></li> -->
 <li><a class="nav-link scrollto" href="#chefs">Vendors</a></li>
 <!-- <li><a class="nav-link scrollto" href="#chefs">Join</a></li> -->
@@ -30,7 +30,7 @@
 
   </ul>
 </li>
-<li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+<!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li> -->
 
 {% if request.user.is_authenticated %}
 <li><a href="{% url 'account_logout' %}">Logout</a></li>
@@ -50,10 +50,10 @@
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url({% static 'img/slide/slide-1.jpg' %});">
+        <div class="carousel-item active" style="background-image: url({% static 'img/delivery.jpg' %});">
           <div class="carousel-container">
             <div class="carousel-content">
-              <h2 class="animate__animated animate__fadeInDown"><span>Errand</span> Service</h2>
+              <h2 class="animate__animated animate__fadeInDown"><span>Delivery</span> Service</h2>
               <p class="animate__animated animate__fadeInUp">Delegate your daily tasks to us, from grocery shopping to
                 package collection, and we'll handle them efficiently and promptly.</p>
               <div>
@@ -66,10 +66,10 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="carousel-item" style="background-image: url({% static 'img/slide/slide-2.jpg' %});">
+        <div class="carousel-item" style="background-image: url({% static 'img/food.jpg' %});">
           <div class="carousel-container">
             <div class="carousel-content">
-              <h2 class="animate__animated animate__fadeInDown">Delivery service</h2>
+              <h2 class="animate__animated animate__fadeInDown"><span>Swift Lunch</span></h2>
               <p class="animate__animated animate__fadeInUp">Swift Services specializes in pickup and delivery services,
                 offering efficient and timely transportation of packages, documents, and goods to various locations.</p>
               <div>
@@ -82,10 +82,10 @@
         </div>
 
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url({% static 'img/slide/slide-3.jpg' %});">
+        <div class="carousel-item" style="background-image: url({% static 'img/cleaning.jpg' %});">
           <div class="carousel-container">
             <div class="carousel-content">
-              <h2 class="animate__animated animate__fadeInDown">Cleaning</h2>
+              <h2 class="animate__animated animate__fadeInDown"><span>Cleaning</span></h2>
               <p class="animate__animated animate__fadeInUp">Our professional cleaning team will create a clean and
                 organized environment for residential and commercial spaces through regular cleaning, deep cleaning,
                 move-in/move-out cleaning, and office cleaning.</p>
@@ -115,51 +115,61 @@
 <div class="container mt-5">
   <div class="row">
     <h1 class="text-center" style="color: #ffb03b;">Services</h1>
+
     <!-- Card 1: Errand & Logistic -->
-    <div class="row"> <!-- Added mt-4 class for margin-top -->
+    <div class="row mt-4">
+
       <div class="card shadow border" style="width: 100%;">
-        
-        <div class="card-body">
-          <h5 class="card-title">Errand & Logistic</h5>
-        </div>
-        <div class="">
-          <p class="card-text">Delegate your daily tasks to us, from grocery shopping to package collection, and we'll handle them efficiently and promptly.</p>
-          
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/test1.jpg' %}" alt="Errand & Logistic Image" class="card-img">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Errand & Logistic</h5>
+              <p class="card-text">Delegate your daily tasks to us, from grocery shopping to package collection, and we'll handle them efficiently and promptly.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-<!-- Card 3: Swift Lunch -->
-<div class="row mt-4"> <!-- Added mt-4 class for margin-top -->
-  <div class="card shadow border" style="width: 100%;">
-    
-    <div class="card-body">
-      <h5 class="card-title">Swift Lunch</h5>
-      
+    <!-- Card 3: Swift Lunch -->
+    <div class="row mt-4">
+      <div class="card shadow border" style="width: 100%;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/burger.jpg' %}" alt="Swift Lunch Image" class="card-img">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Swift Lunch</h5>
+              <p class="card-text">Experience the convenience of Swift Lunch food delivery service. From your favorite local dishes to international cuisine, we bring delicious meals straight to your doorstep. Enjoy hassle-free dining without leaving your home or office.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="" >
-      <p class="card-text">Experience the convenience of Swift Lunch food delivery service. From your favorite local dishes to international cuisine, we bring delicious meals straight to your doorstep. Enjoy hassle-free dining without leaving your home or office.</p>
-    </div>
-  </div>
-</div>
 
     <!-- Card 2: Cleaning -->
-    <div class="row mt-4"> <!-- Added mt-4 class for margin-top -->
+    <div class="row mt-4">
       <div class="card shadow border" style="width: 100%;">
-        
-        <div class="card-body">
-          <h5 class="card-title">Cleaning</h5>
-          
-        </div>
-        <div class="" >
-          Elevate your space with our professional cleaning services. Our expert team ensures a spotless environment for homes and businesses. From regular cleaning to deep cleans, we make cleanliness effortless
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="{% static 'img/cleaning3.jpg' %}" style="height: 250px;" alt="Cleaning Image" class="card-img">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Cleaning</h5>
+              <p class="card-text">Elevate your space with our professional cleaning services. Our expert team ensures a spotless environment for homes and businesses. From regular cleaning to deep cleans, we make cleanliness effortless.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-
-    
   </div>
 </div>
+
 
 
 <!-- ======= Whu Us Section ======= -->
@@ -500,12 +510,28 @@
   <div class="container">
 
     <div class="section-title">
-      <h2>Partnered<span> Restaurants</span></h2>
+      <h2> Partnered<span> Restaurants</span></h2>
       <p>Browse and order spetacular <span>dishes</span> from certified Restaurants</p>
     </div>
 
     <div class="row">
-      <div class="food-list">
+      {% for rest in restaurants  %}
+      <div class="col-lg-4 col-md-6">
+        <div class="member">
+          
+          {% if rest.image %}
+          <div class="pic"><img src="{{rest.image.url}}"  class="img-fluid" alt=""></div>
+          {% endif %}
+            
+          <div class="member-info">
+            <span></span>
+            <a href="{% url 'users:restaurant_dishes_all' rest.id %}" class="btn btn-primary">Browse Menu</a>
+            </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+      <!-- <div class="food-list">
         <div class="food-item">
           <img src="{% static 'img/download2.jpeg' %}" alt="Delicious Burger">
           <div class="food-info">
@@ -540,9 +566,9 @@
           </div>
         </div>
       
-        <!-- Add more food items here -->
-      </div>
       
+      </div>
+       -->
     </div>
     
   </div>

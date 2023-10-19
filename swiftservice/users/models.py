@@ -156,6 +156,7 @@ class Restaurant(models.Model):
     description = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='restaurant_images/', blank=True, null=True)  # Add this field
+    address = models.CharField(max_length=50, blank=True)
 
     def __str__(self):
         return self.name

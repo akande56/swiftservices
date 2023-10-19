@@ -1,22 +1,38 @@
 {% extends "index.html" %}
-
+{% load static %}
 {% load i18n %}
 
 {% block title %}
   {% translate "Sign Out" %}
 {% endblock title %}
 {% block content %}
-  <div class="col-md-6 offset-4 mt-5 mb-3 py-5">
-    <h1>{% translate "Sign Out" %}</h1>
-  <p>{% translate "Are you sure you want to sign out?" %}</p>
-  <form method="post" action="{% url 'account_logout' %}">
-    {% csrf_token %}
-    {% if redirect_field_value %}
-      <input type="hidden"
-             name="{{ redirect_field_name }}"
-             value="{{ redirect_field_value }}" />
-    {% endif %}
-    <button class="btn btn-danger" type="submit">{% translate "Sign Out" %}</button>
-  </form>
+<style>
+  body {
+    background-image: url({% static 'img/background4.jpg' %});
+    /* Replace with your image file path */
+    background-size: cover;
+    /* Adjust how the image covers the body */
+    background-repeat: no-repeat;
+    /* Prevent the image from repeating */
+    background-attachment: fixed;
+    /* Keep the background fixed while scrolling */
+  }
+</style>
+  <div class="content py-5">
+    <div class="row py-5">
+      <div class="col-md-6 offset-5 mt-5 mb-3 ">
+        <h1 class="text-white">{% translate "Sign Out" %}</h1>
+      <p class="text-white">{% translate "Are you sure you want to sign out?" %}</p>
+      <form method="post" action="{% url 'account_logout' %}">
+        {% csrf_token %}
+        {% if redirect_field_value %}
+          <input type="hidden"
+                 name="{{ redirect_field_name }}"
+                 value="{{ redirect_field_value }}" />
+        {% endif %}
+        <button class="btn btn-danger" type="submit">{% translate "Sign Out" %}</button>
+      </form>
+      </div>
+    </div>
   </div>
 {% endblock content %}
