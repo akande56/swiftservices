@@ -5,7 +5,7 @@ from django.contrib.auth import get_user_model, decorators
 from django.utils.translation import gettext_lazy as _
 
 from swiftservice.users.forms import UserAdminChangeForm, UserAdminCreationForm
-from .models import Customer, ServiceProvider, SupportStaff, Task, Pickup, Delivery, Restaurant
+from .models import Customer, ServiceProvider, SupportStaff, Task, Pickup, Delivery, Restaurant, Dish
 
 User = get_user_model()
 
